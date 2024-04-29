@@ -1,0 +1,11 @@
+{
+  "hosting": [
+    {
+      "target": "prj",
+      "source": ".",
+      "frameworksBackend": {
+        "region": "europe-west1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cart-project-a285c": {
+      "hosting": {
+        "prj": [
+          "cart-project-a285c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cart-project-a285c"
+  }
+}

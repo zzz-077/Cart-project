@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --page-color: #edf4ff;
+  --text-color: #3d434c;
+  --button-color: #1355e1;
+  --main-fontFamily: "Poppins", sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--page-color);
+  overflow: hidden;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  color: var(--text-color);
+  font-family: var(--main-fontFamily);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-fontFamily);
+}
+
+button {
+  border: 0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--button-color);
+  color: white;
+  transition: all 0.2s;
+}
+
+button:hover {
+  filter: brightness(0.5px);
+}
