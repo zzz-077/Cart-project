@@ -1,0 +1,25 @@
+.search_box {
+  padding: 1rem 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 45%;
+  gap: 2rem;
+}
+.search_box i {
+  font-size: 1rem;
+  color: var(--border-color);
+}
+.search_box input {
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1rem;
+  color: var(--border-color);
+  outline: none;
+  width: 100%;
+}
+.search_box input::placeholder {
+  color: var(--border-color);
+}

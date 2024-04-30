@@ -1,0 +1,17 @@
+<div class="conatiner">
+  <div class="search-comp">
+    <app-search></app-search>
+  </div>
+  <div class="table-comp">
+    <div class="board-comp"><app-table></app-table></div>
+    <div [ngClass]="isFilterFolded ? 'active' : null" class="filter-comp">
+      <div>
+        <i (click)="filtericonClick()" class="fa-solid fa-bars"></i>
+      </div>
+      <div *ngIf="isFilterFolded" class="filter-cont">
+        <app-filter></app-filter>
+      </div>
+    </div>
+  </div>
+  <div class="paggination-comp">1 2 3 4</div>
+</div>

@@ -2,7 +2,10 @@
   --page-color: #edf4ff;
   --text-color: #3d434c;
   --button-color: #1355e1;
+  --border-radius: 0.3rem;
+  --border-color: #4d4e4fab;
   --main-fontFamily: "Poppins", sans-serif;
+  --selected-card: #b1c3ea;
 }
 
 * {
@@ -14,10 +17,8 @@
 body {
   background-color: var(--page-color);
   overflow: hidden;
-  display: flex;
   height: 100vh;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 
 p {
