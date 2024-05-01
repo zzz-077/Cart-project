@@ -2,10 +2,18 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  overflow: auto;
 }
 table thead {
   border-bottom: 1px solid var(--border-color);
+}
+table thead tr {
+  border-bottom: 1px solid var(--border-color);
+}
+table thead tr th:nth-child(2) {
+  width: 300px;
+}
+table thead tr th:last-child {
+  width: 150px;
 }
 table thead tr th div {
   display: flex;
@@ -20,12 +28,11 @@ i {
 }
 table thead tr th div:hover p,
 table thead tr th div:hover i {
-  filter: opacity(0.7);
+  color: #386fe6;
 }
 
 table thead tr i {
   font-size: 1rem;
-  color: var(--text-color);
 }
 
 td,
@@ -33,14 +40,19 @@ th {
   text-align: left;
   padding: 10px;
 }
-
+.body_cont {
+  overflow: hidden;
+  overflow-y: auto;
+}
 table tbody tr {
   cursor: pointer;
   transition: all 0.2s;
   border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 0, 0, 0);
 }
 table tbody tr:hover {
   background-color: var(--selected-card);
+  border: 1px solid #678fe7;
 }
 
 table tbody tr td:nth-child(1) {

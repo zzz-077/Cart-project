@@ -6,7 +6,8 @@
     <div class="board-comp"><app-table></app-table></div>
     <div [ngClass]="isFilterFolded ? 'active' : null" class="filter-comp">
       <div>
-        <i (click)="filtericonClick()" class="fa-solid fa-bars"></i>
+        <h3 *ngIf="isFilterFolded">Enable columns</h3>
+        <i (click)="filtericonClick()" class="fa-solid fa-bars-staggered"></i>
       </div>
       <div *ngIf="isFilterFolded" class="filter-cont">
         <app-filter></app-filter>

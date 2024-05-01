@@ -1,0 +1,18 @@
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  height: 100%;
+}
+ul li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+ul li p {
+  color: var(--text-color);
+}
+ul li input {
+  width: 16px;
+  height: 16px;
+}

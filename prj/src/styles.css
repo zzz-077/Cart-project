@@ -1,7 +1,7 @@
 :root {
   --page-color: #edf4ff;
   --text-color: #3d434c;
-  --button-color: #1355e1;
+  --button-color: #6592f3;
   --border-radius: 0.3rem;
   --border-color: #4d4e4fab;
   --main-fontFamily: "Poppins", sans-serif;
@@ -19,6 +19,17 @@ body {
   overflow: hidden;
   height: 100vh;
   width: 100%;
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: whitesmoke;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--button-color);
+  }
 }
 
 p {
@@ -34,16 +45,32 @@ a {
   text-decoration: none;
   color: var(--main-fontFamily);
 }
+i {
+  color: var(--button-color);
+  transition: all 0.5s;
+}
+i:hover {
+  color: #386fe6;
+}
 
 button {
   border: 0;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.875rem;
   background-color: var(--button-color);
   color: white;
   transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+button i {
+  color: white;
 }
 
 button:hover {
-  filter: brightness(0.5px);
+  background-color: #386fe6;
 }

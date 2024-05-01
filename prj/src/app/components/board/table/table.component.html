@@ -26,24 +26,21 @@
           <i class="fa-solid fa-arrow-up-wide-short"></i>
         </div>
       </th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr *ngFor="let item of CardsArr">
       <td>
-        <img src="https://m.media-amazon.com/images/I/916T5H6sCtL.jpg" alt="" />
+        <img [src]="item?.Img" alt="" />
       </td>
-      <td>Grand Theft Auto V</td>
-      <td>Action-Adventure</td>
-      <td>29.99</td>
-      <td>60</td>
-    </tr>
-    <tr>
-      <td>Image</td>
-      <td>Name</td>
-      <td>Category</td>
-      <td>Price</td>
-      <td>Quantity</td>
+      <td>{{ item?.Name }}</td>
+      <td>{{ item?.Category }}</td>
+      <td>${{ item?.Price }}</td>
+      <td>{{ item?.Quantity }}</td>
+      <td>
+        <button><i class="fa-solid fa-plus"></i>Add to cart</button>
+      </td>
     </tr>
   </tbody>
 </table>
