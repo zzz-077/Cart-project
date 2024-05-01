@@ -3,16 +3,34 @@
     <app-search></app-search>
   </div>
   <div class="table-comp">
-    <div class="board-comp"><app-table></app-table></div>
+    <div class="board-comp">
+      <app-table [filteredObj]="filteredObjecFunc"></app-table>
+    </div>
     <div [ngClass]="isFilterFolded ? 'active' : null" class="filter-comp">
       <div>
         <h3 *ngIf="isFilterFolded">Enable columns</h3>
         <i (click)="filtericonClick()" class="fa-solid fa-bars-staggered"></i>
       </div>
       <div *ngIf="isFilterFolded" class="filter-cont">
-        <app-filter></app-filter>
+        <app-filter (filterObj)="filteredObjecFunc($event)"></app-filter>
       </div>
     </div>
   </div>
-  <div class="paggination-comp">1 2 3 4</div>
+  <div class="paggination-comp">
+    <div class="pag_box">
+      <div class="prew-arrow">
+        <i class="fa-solid fa-angle-left"></i>
+      </div>
+      <div class="middle-numbers">
+        <strong>1</strong>
+        <strong>2</strong>
+        <strong>3</strong>
+        <strong>...</strong>
+        <strong>10</strong>
+      </div>
+      <div class="next-arrow">
+        <i class="fa-solid fa-angle-right"></i>
+      </div>
+    </div>
+  </div>
 </div>

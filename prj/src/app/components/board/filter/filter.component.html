@@ -1,18 +1,38 @@
 <ul>
   <li>
-    <input [checked]="true" type="checkbox" />
+    <input
+      (click)="filterClick(check1, 'Name')"
+      #check1
+      [checked]="true"
+      type="checkbox"
+    />
     <p>Name</p>
   </li>
   <li>
-    <input [checked]="true" type="checkbox" />
+    <input
+      (click)="filterClick(check2, 'Category')"
+      #check2
+      [checked]="true"
+      type="checkbox"
+    />
     <p>Category</p>
   </li>
   <li>
-    <input [checked]="true" type="checkbox" />
+    <input
+      (click)="filterClick(check3, 'Price')"
+      #check3
+      [checked]="true"
+      type="checkbox"
+    />
     <p>Price</p>
   </li>
   <li>
-    <input [checked]="true" type="checkbox" />
+    <input
+      (click)="filterClick(check4, 'Quantity')"
+      #check4
+      [checked]="true"
+      type="checkbox"
+    />
     <p>Quantity</p>
   </li>
 </ul>

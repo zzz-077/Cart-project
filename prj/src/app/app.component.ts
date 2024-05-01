@@ -6,6 +6,7 @@ import { card } from './shared/model/cardModel';
 import { TableComponent } from './components/board/table/table.component';
 import { SearchComponent } from './components/board/search/search.component';
 import { FilterComponent } from './components/board/filter/filter.component';
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ import { FilterComponent } from './components/board/filter/filter.component';
 export class AppComponent {
   title = 'prj';
   CardsArr: [] = [];
+  FilteredColumn: {} = {};
   isFilterFolded: boolean = false;
   constructor(private cardServ: CardsService) {}
 
@@ -33,5 +35,8 @@ export class AppComponent {
   }
   filtericonClick() {
     this.isFilterFolded = !this.isFilterFolded;
+  }
+  filteredObjecFunc(obj: { Name: string; Value: boolean }) {
+    this.FilteredColumn = obj;
   }
 }
