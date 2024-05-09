@@ -3,27 +3,55 @@
     <tr>
       <th><p>Image</p></th>
       <th>
-        <div>
+        <div (click)="SortClick('Name')">
           <p>Name</p>
-          <i class="fa-solid fa-arrow-up-wide-short"></i>
+          <i
+            *ngIf="whichSortIcon != 'Name' || Iconclick == false"
+            class="fa-solid fa-arrow-up-wide-short"
+          ></i>
+          <i
+            *ngIf="whichSortIcon == 'Name' && Iconclick == true"
+            class="fa-solid fa-arrow-down-wide-short"
+          ></i>
         </div>
       </th>
       <th>
-        <div>
+        <div (click)="SortClick('Category')">
           <p>Category</p>
-          <i class="fa-solid fa-arrow-up-wide-short"></i>
+          <i
+            *ngIf="whichSortIcon != 'Category' || Iconclick == false"
+            class="fa-solid fa-arrow-up-wide-short"
+          ></i>
+          <i
+            *ngIf="whichSortIcon == 'Category' && Iconclick == true"
+            class="fa-solid fa-arrow-down-wide-short"
+          ></i>
         </div>
       </th>
       <th>
-        <div>
+        <div (click)="SortClick('Price')">
           <p>Price</p>
-          <i class="fa-solid fa-arrow-up-wide-short"></i>
+          <i
+            *ngIf="whichSortIcon != 'Price' || Iconclick == false"
+            class="fa-solid fa-arrow-up-wide-short"
+          ></i>
+          <i
+            *ngIf="whichSortIcon == 'Price' && Iconclick == true"
+            class="fa-solid fa-arrow-down-wide-short"
+          ></i>
         </div>
       </th>
       <th>
-        <div>
+        <div (click)="SortClick('Quantity')">
           <p>Quantity</p>
-          <i class="fa-solid fa-arrow-up-wide-short"></i>
+          <i
+            *ngIf="whichSortIcon != 'Quantity' || Iconclick == false"
+            class="fa-solid fa-arrow-up-wide-short"
+          ></i>
+          <i
+            *ngIf="whichSortIcon == 'Quantity' && Iconclick == true"
+            class="fa-solid fa-arrow-down-wide-short"
+          ></i>
         </div>
       </th>
       <th></th>

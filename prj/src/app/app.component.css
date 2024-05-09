@@ -23,6 +23,7 @@
   padding: 1rem;
   overflow: hidden;
   overflow-y: auto;
+  overflow-x: auto;
 }
 .conatiner .table-comp .filter-comp {
   height: 100%;

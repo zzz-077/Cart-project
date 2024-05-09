@@ -6,8 +6,6 @@ import { card } from './shared/model/cardModel';
 import { TableComponent } from './components/board/table/table.component';
 import { SearchComponent } from './components/board/search/search.component';
 import { FilterComponent } from './components/board/filter/filter.component';
-import { log } from 'node:console';
-
 @Component({
   selector: 'app-root',
   standalone: true,
