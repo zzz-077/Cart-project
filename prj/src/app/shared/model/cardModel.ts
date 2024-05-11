@@ -6,3 +6,8 @@ export interface card {
   Quantity: number;
   Id: string;
 }
+
+export interface filterObj {
+  Name: string;
+  Value: boolean;
+}

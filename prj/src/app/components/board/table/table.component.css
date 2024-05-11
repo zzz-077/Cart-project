@@ -12,6 +12,7 @@ table thead tr {
 table thead tr th:nth-child(2) {
   width: 300px;
 }
+
 table thead tr th:last-child {
   width: 150px;
 }
@@ -22,6 +23,7 @@ table thead tr th div {
   gap: 0.125rem;
   cursor: pointer;
   transition: all 0.2s;
+  padding: 0 1rem;
 }
 table thead tr th div p,
 i {
@@ -56,7 +58,10 @@ table tbody tr:hover {
 table tbody tr td:nth-child(1) {
   width: 70px;
   height: 80px;
-  overflow: hidden;
+}
+table tbody tr td:nth-child(1).active {
+  width: 70px;
+  height: 180px;
 }
 table tbody tr td:nth-child(1) img {
   width: 100%;

@@ -1,8 +1,9 @@
 import { Component, NgZone, inject, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardsService } from '../../../shared/services/cards/cards.service';
-import { card } from '../../../shared/model/cardModel';
+import { card, filterObj } from '../../../shared/model/cardModel';
 import { log } from 'console';
+import { FilterService } from '../../../shared/services/filter/filter.service';
 
 @Component({
   selector: 'app-table',
@@ -12,25 +13,43 @@ import { log } from 'console';
   styleUrl: './table.component.css',
 })
 export class TableComponent {
-  @Input() filteredObj: {} = {};
   CardsArr: card[] = [];
   isFilterFolded: boolean = false;
   whichSortIcon: string = '';
   Iconclick: boolean = false;
-  constructor(private cardServ: CardsService) {}
+  // DisabledColumn: any = {
+  //   Name: '',
+  //   Value: true,
+  // };
+  DisabledColumn: filterObj[] = [
+    { Name: 'Name', Value: true },
+    { Name: 'Category', Value: true },
+    { Name: 'Price', Value: true },
+    { Name: 'Quantity', Value: true },
+  ];
+
+  constructor(
+    private cardServ: CardsService,
+    private filterServ: FilterService
+  ) {}
   ngOnInit() {
-    console.log(this.filteredObj);
+    console.log(this.DisabledColumn);
+    this.filterServ.filterObject$.subscribe((obj) => {
+      // if (obj != undefined) this.DisabledColumn = obj;
+      if (obj != undefined) {
+        this.DisabledColumn.forEach((item) => {
+          if (obj.Name == item.Name) item.Value = obj.Value;
+        });
+        console.log(this.DisabledColumn);
+      }
+    });
+
     this.cardServ.getCards().subscribe((data: any) => {
       this.CardsArr = data;
     });
   }
   SortClick(value: string) {
     this.whichSortIcon = value;
-    // this.CardsArr = this.CardsArr.sort((a: card, b: card) => {
-    // if (a.Name > b.Name) return 1;
-    // else return -1;
-    // });
-
     switch (value) {
       case 'Name': {
         if (this.Iconclick === false) {

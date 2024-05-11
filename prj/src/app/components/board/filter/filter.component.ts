@@ -1,6 +1,9 @@
 import { Component, Input, OnInit, Output, output } from '@angular/core';
 import { log } from 'node:console';
 import { EventEmitter } from 'node:stream';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { FilterService } from '../../../shared/services/filter/filter.service';
+import { filterObj } from '../../../shared/model/cardModel';
 
 @Component({
   selector: 'app-filter',
@@ -10,14 +13,13 @@ import { EventEmitter } from 'node:stream';
   styleUrl: './filter.component.css',
 })
 export class FilterComponent {
-  filterObj = output<{ Name: string; Value: boolean }>();
-  constructor() {}
+  constructor(private filterServ: FilterService) {}
 
   filterClick(value: any, name: string) {
-    var obj: { Name: string; Value: boolean } = {
+    var obj: filterObj = {
       Name: name,
       Value: value.checked,
     };
-    this.filterObj.emit(obj);
+    this.filterServ.setObject(obj);
   }
 }

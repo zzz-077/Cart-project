@@ -2,7 +2,8 @@
   <thead>
     <tr>
       <th><p>Image</p></th>
-      <th>
+
+      <th *ngIf="DisabledColumn[0].Name === 'Name' && DisabledColumn[0].Value">
         <div (click)="SortClick('Name')">
           <p>Name</p>
           <i
@@ -15,7 +16,9 @@
           ></i>
         </div>
       </th>
-      <th>
+      <th
+        *ngIf="DisabledColumn[1].Name === 'Category' && DisabledColumn[1].Value"
+      >
         <div (click)="SortClick('Category')">
           <p>Category</p>
           <i
@@ -28,7 +31,7 @@
           ></i>
         </div>
       </th>
-      <th>
+      <th *ngIf="DisabledColumn[2].Name === 'Price' && DisabledColumn[2].Value">
         <div (click)="SortClick('Price')">
           <p>Price</p>
           <i
@@ -41,7 +44,9 @@
           ></i>
         </div>
       </th>
-      <th>
+      <th
+        *ngIf="DisabledColumn[3].Name === 'Quantity' && DisabledColumn[3].Value"
+      >
         <div (click)="SortClick('Quantity')">
           <p>Quantity</p>
           <i
@@ -62,10 +67,22 @@
       <td>
         <img [src]="item?.Img" alt="" />
       </td>
-      <td>{{ item?.Name }}</td>
-      <td>{{ item?.Category }}</td>
-      <td>${{ item?.Price }}</td>
-      <td>{{ item?.Quantity }}</td>
+      <td *ngIf="DisabledColumn[0].Name === 'Name' && DisabledColumn[0].Value">
+        {{ item?.Name }}
+      </td>
+      <td
+        *ngIf="DisabledColumn[1].Name === 'Category' && DisabledColumn[1].Value"
+      >
+        {{ item?.Category }}
+      </td>
+      <td *ngIf="DisabledColumn[2].Name === 'Price' && DisabledColumn[2].Value">
+        ${{ item?.Price }}
+      </td>
+      <td
+        *ngIf="DisabledColumn[3].Name === 'Quantity' && DisabledColumn[3].Value"
+      >
+        {{ item?.Quantity }}
+      </td>
       <td>
         <button><i class="fa-solid fa-plus"></i>Add to cart</button>
       </td>
