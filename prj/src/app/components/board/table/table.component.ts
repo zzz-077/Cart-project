@@ -17,10 +17,7 @@ export class TableComponent {
   isFilterFolded: boolean = false;
   whichSortIcon: string = '';
   Iconclick: boolean = false;
-  // DisabledColumn: any = {
-  //   Name: '',
-  //   Value: true,
-  // };
+
   DisabledColumn: filterObj[] = [
     { Name: 'Name', Value: true },
     { Name: 'Category', Value: true },
@@ -33,14 +30,11 @@ export class TableComponent {
     private filterServ: FilterService
   ) {}
   ngOnInit() {
-    console.log(this.DisabledColumn);
     this.filterServ.filterObject$.subscribe((obj) => {
-      // if (obj != undefined) this.DisabledColumn = obj;
       if (obj != undefined) {
         this.DisabledColumn.forEach((item) => {
           if (obj.Name == item.Name) item.Value = obj.Value;
         });
-        console.log(this.DisabledColumn);
       }
     });
 

@@ -18,19 +18,35 @@
   </div>
   <div class="paggination-comp">
     <div class="pag_box">
-      <div class="prew-arrow">
-        <i class="fa-solid fa-angle-left"></i>
-      </div>
-      <div class="middle-numbers">
-        <strong>1</strong>
-        <strong>2</strong>
-        <strong>3</strong>
-        <strong>...</strong>
-        <strong>10</strong>
-      </div>
-      <div class="next-arrow">
-        <i class="fa-solid fa-angle-right"></i>
-      </div>
+      <button
+        [disabled]="isMinPageNumber"
+        (click)="arrowClick('prew')"
+        class="prew-arrow"
+      >
+        <i
+          [ngClass]="{ active: isMinPageNumber }"
+          class="fa-solid fa-angle-left"
+        ></i>
+      </button>
+      <ul class="middle-numbers">
+        <li
+          (click)="pageClick(page)"
+          *ngFor="let page of pageArr"
+          [ngClass]="{ active: page === CurrentPage }"
+        >
+          <p>{{ page }}</p>
+        </li>
+      </ul>
+      <button
+        [disabled]="isMaxPageNumber"
+        (click)="arrowClick('next')"
+        class="next-arrow"
+      >
+        <i
+          [ngClass]="{ active: isMaxPageNumber }"
+          class="fa-solid fa-angle-right"
+        ></i>
+      </button>
     </div>
   </div>
 </div>

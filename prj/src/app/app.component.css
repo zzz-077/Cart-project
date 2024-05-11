@@ -73,27 +73,51 @@
   justify-content: space-between;
   gap: 1.25rem;
 }
+.conatiner .paggination-comp .pag_box button {
+  width: auto;
+  padding: 0;
+}
 .conatiner .paggination-comp .pag_box .prew-arrow i,
 .conatiner .paggination-comp .pag_box .next-arrow i {
   cursor: pointer;
-  color: var(--text-color);
+  color: var(--border-color);
   font-size: 1.25rem;
+  padding: 4px;
+  border-radius: 2rem;
+  transition: all 0.1;
 }
 
-.conatiner .paggination-comp .pag_box .middle-numbers {
+.conatiner .paggination-comp .pag_box .prew-arrow:disabled,
+.conatiner .paggination-comp .pag_box .next-arrow:disabled {
+  opacity: 0.3;
+}
+.conatiner .paggination-comp .pag_box .prew-arrow:disabled i:hover,
+.conatiner .paggination-comp .pag_box .next-arrow:disabled i:hover {
+  background-color: var(--button-color);
+  color: var(--border-color);
+}
+.conatiner .paggination-comp .pag_box .prew-arrow i:hover,
+.conatiner .paggination-comp .pag_box .next-arrow i:hover {
+  background-color: rgba(173, 170, 170, 0.639);
+  color: whitesmoke;
+}
+
+.conatiner .paggination-comp .pag_box ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.25rem;
 }
-.conatiner .paggination-comp .pag_box .middle-numbers strong {
+.conatiner .paggination-comp .pag_box ul li {
   font-size: 1rem;
   color: white;
-  font-size: 1.125rem;
   cursor: pointer;
-  padding: 4px 6px;
+  padding: 4px 8px;
+  border-radius: 2rem;
 }
-.conatiner .paggination-comp .pag_box .middle-numbers strong.active {
-  border-radius: 0.25rem;
-  background-color: var(--text-color);
+.conatiner .paggination-comp .pag_box ul li p {
+  color: white;
+}
+.conatiner .paggination-comp .pag_box ul li.active {
+  background-color: var(--border-color);
 }
