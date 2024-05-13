@@ -7,6 +7,7 @@ import { TableComponent } from './components/board/table/table.component';
 import { SearchComponent } from './components/board/search/search.component';
 import { FilterComponent } from './components/board/filter/filter.component';
 import { log } from 'node:console';
+import { find } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -22,23 +23,27 @@ import { log } from 'node:console';
 })
 export class AppComponent {
   title = 'prj';
-  CardsArr: [] = [];
   FilteredColumn: {} = {};
   CurrentPage: number = 1;
   pagesLimit: number = 0;
-  pageArr: number[] = [];
+  pageArr: any[] = [];
+  currCardFr: number = 0;
+  currCardTo: number = 5;
   isMaxPageNumber: boolean = false;
   isMinPageNumber: boolean = true;
   isFilterFolded: boolean = false;
   constructor(private cardServ: CardsService) {}
 
   ngOnInit() {
-    this.cardServ.getCards().subscribe((data: any) => {
-      this.CardsArr = data;
-
-      this.pagesLimit = Math.ceil(data.length / 6);
+    this.cardServ.getCardsLength().subscribe((val) => {
+      if (val != null) {
+        this.pagesLimit = Math.ceil(val / 6);
+      }
       for (let i = 1; i <= this.pagesLimit; i++) {
         this.pageArr.push(i);
+        // if (i <= 4) this.pageArr.push(i);
+        // else if (i == 5) this.pageArr.push('...');
+        // else if (i == this.pagesLimit + 5) this.pageArr.push(i);
       }
     });
   }
@@ -55,13 +60,15 @@ export class AppComponent {
       this.isMinPageNumber = false;
       if (this.CurrentPage != this.pageArr.length) {
         this.CurrentPage++;
-      } else {
+        this.pageClickServ('next');
       }
     } else {
       if (this.CurrentPage == 1) {
         this.CurrentPage = 1;
+        this.pageClickServ('prev');
       } else {
         this.CurrentPage--;
+        this.pageClickServ('prev');
       }
     }
     if (this.CurrentPage == 1) this.isMinPageNumber = true;
@@ -69,12 +76,29 @@ export class AppComponent {
     if (this.CurrentPage == this.pageArr.length) this.isMaxPageNumber = true;
     else this.isMaxPageNumber = false;
   }
+
   pageClick(page: number) {
+    this.currCardFr = 6 * page - 6;
+    this.currCardTo = 6 * page - 1;
+    this.cardServ.setNewPage(this.currCardFr, this.currCardTo);
+
     this.CurrentPage = page;
     this.isMaxPageNumber = false;
     this.isMinPageNumber = false;
     if (this.CurrentPage == 1) this.isMinPageNumber = true;
     else if (this.CurrentPage == this.pageArr.length)
       this.isMaxPageNumber = true;
+  }
+
+  pageClickServ(value: string) {
+    if (value === 'next') {
+      this.currCardFr += 6;
+      this.currCardTo += 6;
+      this.cardServ.setNewPage(this.currCardFr, this.currCardTo);
+    } else {
+      this.currCardFr -= 6;
+      this.currCardTo -= 6;
+      this.cardServ.setNewPage(this.currCardFr, this.currCardTo);
+    }
   }
 }

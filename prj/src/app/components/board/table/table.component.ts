@@ -17,6 +17,8 @@ export class TableComponent {
   isFilterFolded: boolean = false;
   whichSortIcon: string = '';
   Iconclick: boolean = false;
+  currCardFr: number = 0;
+  currCardTo: number = 5;
 
   DisabledColumn: filterObj[] = [
     { Name: 'Name', Value: true },
@@ -38,10 +40,14 @@ export class TableComponent {
       }
     });
 
-    this.cardServ.getCards().subscribe((data: any) => {
-      this.CardsArr = data;
+    this.cardServ.newCards$.subscribe((obj: any) => {
+      if (obj != null) {
+        (this.currCardFr = obj?.a), (this.currCardTo = obj?.b);
+      }
+      this.getCards(this.currCardFr, this.currCardTo);
     });
   }
+
   SortClick(value: string) {
     this.whichSortIcon = value;
     switch (value) {
@@ -112,5 +118,12 @@ export class TableComponent {
         break;
       }
     }
+  }
+
+  getCards(val1: number, val2: number) {
+    this.cardServ.getCards(val1, val2).subscribe((data: any) => {
+      this.CardsArr = [];
+      this.CardsArr = data;
+    });
   }
 }
