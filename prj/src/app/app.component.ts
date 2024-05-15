@@ -7,7 +7,7 @@ import { TableComponent } from './components/board/table/table.component';
 import { SearchComponent } from './components/board/search/search.component';
 import { FilterComponent } from './components/board/filter/filter.component';
 import { log } from 'node:console';
-import { find } from 'rxjs';
+import { debounceTime, find } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,

@@ -1,9 +1,18 @@
-import { Component, NgZone, inject, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  NgZone,
+  inject,
+  OnInit,
+  Input,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardsService } from '../../../shared/services/cards/cards.service';
 import { card, filterObj } from '../../../shared/model/cardModel';
 import { log } from 'console';
 import { FilterService } from '../../../shared/services/filter/filter.service';
+import { EventEmitter } from 'stream';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -45,6 +54,9 @@ export class TableComponent {
         (this.currCardFr = obj?.a), (this.currCardTo = obj?.b);
       }
       this.getCards(this.currCardFr, this.currCardTo);
+    });
+    this.cardServ.searchedCards$.pipe(debounceTime(500)).subscribe((data) => {
+      if (data.length > 0) this.CardsArr = data;
     });
   }
 
