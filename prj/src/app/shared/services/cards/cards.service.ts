@@ -20,7 +20,7 @@ export class CardsService {
   public cardsObservable = new BehaviorSubject<{}>({ a: 0, b: 5 });
   newCards$: Observable<any> = this.cardsObservable.asObservable();
 
-  public SearchedCardsObservable = new BehaviorSubject<{}>({});
+  public SearchedCardsObservable = new BehaviorSubject<any>(null);
   searchedCards$: Observable<any> = this.SearchedCardsObservable.asObservable();
 
   getCardsLength(): Observable<number | null> {
@@ -79,7 +79,6 @@ export class CardsService {
         map((doc) => {
           if (!doc.empty) {
             let docs = doc.docs;
-
             docs
               .map((obj) => obj.data() as card)
               .filter((card) =>

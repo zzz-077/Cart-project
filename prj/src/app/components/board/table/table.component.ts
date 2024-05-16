@@ -23,6 +23,7 @@ import { debounceTime } from 'rxjs';
 })
 export class TableComponent {
   CardsArr: card[] = [];
+  isSearched: boolean = false;
   isFilterFolded: boolean = false;
   whichSortIcon: string = '';
   Iconclick: boolean = false;
@@ -49,14 +50,19 @@ export class TableComponent {
       }
     });
 
+    this.cardServ.searchedCards$.subscribe((data) => {
+      if (data != null) {
+        this.CardsArr = data;
+      } else {
+        this.CardsArr = [];
+      }
+    });
+
     this.cardServ.newCards$.subscribe((obj: any) => {
       if (obj != null) {
         (this.currCardFr = obj?.a), (this.currCardTo = obj?.b);
       }
       this.getCards(this.currCardFr, this.currCardTo);
-    });
-    this.cardServ.searchedCards$.pipe(debounceTime(500)).subscribe((data) => {
-      if (data.length > 0) this.CardsArr = data;
     });
   }
 

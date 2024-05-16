@@ -8,6 +8,7 @@ import { SearchComponent } from './components/board/search/search.component';
 import { FilterComponent } from './components/board/filter/filter.component';
 import { log } from 'node:console';
 import { debounceTime, find } from 'rxjs';
+import { CartComponent } from './components/board/cart/cart.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,6 +20,7 @@ import { debounceTime, find } from 'rxjs';
     TableComponent,
     SearchComponent,
     FilterComponent,
+    CartComponent,
   ],
 })
 export class AppComponent {
@@ -32,6 +34,7 @@ export class AppComponent {
   isMaxPageNumber: boolean = false;
   isMinPageNumber: boolean = true;
   isFilterFolded: boolean = false;
+  isCartOpened: boolean = false;
   constructor(private cardServ: CardsService) {}
 
   ngOnInit() {
@@ -100,5 +103,10 @@ export class AppComponent {
       this.currCardTo -= 6;
       this.cardServ.setNewPage(this.currCardFr, this.currCardTo);
     }
+  }
+
+  //cartClick
+  cartClick() {
+    this.isCartOpened = true;
   }
 }
