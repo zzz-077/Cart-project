@@ -109,4 +109,8 @@ export class AppComponent {
   cartClick() {
     this.isCartOpened = true;
   }
+
+  hideCartFromChild(event: boolean) {
+    this.isCartOpened = event;
+  }
 }

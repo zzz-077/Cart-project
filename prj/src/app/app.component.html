@@ -19,8 +19,8 @@
         <app-filter></app-filter>
       </div>
     </div>
-    <div *ngIf="!isCartOpened" class="cart_cont">
-      <app-cart></app-cart>
+    <div *ngIf="isCartOpened" class="cart_cont">
+      <app-cart (hideCart)="hideCartFromChild($event)"></app-cart>
     </div>
   </div>
   <div class="paggination-comp">

@@ -13,13 +13,28 @@ import { filterObj } from '../../../shared/model/cardModel';
   styleUrl: './filter.component.css',
 })
 export class FilterComponent {
-  constructor(private filterServ: FilterService) {}
+  checkValue: boolean = true;
+  checkArr: any[] = [
+    { Name: 'Name', Value: true },
+    { Name: 'Category', Value: true },
+    { Name: 'Price', Value: true },
+    { Name: 'Quantity', Value: true },
+  ];
+  constructor(private filterServ: FilterService) {
+    this.filterServ.filterObject$.subscribe((obj) => {
+      if (obj) {
+        this.checkArr = obj;
+      }
+    });
+  }
 
   filterClick(value: any, name: string) {
-    var obj: filterObj = {
-      Name: name,
-      Value: value.checked,
-    };
-    this.filterServ.setObject(obj);
+    this.checkArr.forEach((ob) => {
+      if (name === ob.Name) {
+        ob.Value = value.checked;
+      }
+    });
+
+    this.filterServ.setObject(this.checkArr);
   }
 }

@@ -10,7 +10,7 @@ export class FilterService {
   filterObject$: Observable<any> = this.sharedObser.asObservable();
   constructor() {}
 
-  setObject(obj: filterObj) {
+  setObject(obj: filterObj[]) {
     this.sharedObser.next(obj);
   }
 }

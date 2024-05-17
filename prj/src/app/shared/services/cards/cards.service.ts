@@ -5,7 +5,17 @@ import {
   AngularFirestore,
   DocumentSnapshot,
 } from '@angular/fire/compat/firestore';
-import { BehaviorSubject, Observable, catchError, from, map, of } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  empty,
+  forkJoin,
+  from,
+  map,
+  mergeMap,
+  of,
+} from 'rxjs';
 import { card } from '../../model/cardModel';
 import e from 'express';
 import { error } from 'console';
@@ -39,7 +49,7 @@ export class CardsService {
         })
       );
   }
-
+  /*
   getCards(currCardFr: number, currCardTo: number): Observable<any[] | null> {
     let cardData: any[] = [];
     return this.firestore
@@ -64,6 +74,62 @@ export class CardsService {
         })
       );
   }
+*/
+  getCards(currCardFr: number, currCardTo: number): Observable<any[] | null> {
+    return this.firestore
+      .collection('cards', (ref) =>
+        ref
+          .orderBy('Index')
+          .startAfter(currCardFr - 1)
+          .limit(6)
+      )
+      .snapshotChanges()
+      .pipe(
+        map((actions) => {
+          if (actions.length > 0) {
+            return actions.map((a) => {
+              const data = a.payload.doc.data() as card;
+              const id = a.payload.doc.id;
+              return { ...data, Id: id };
+            });
+          } else {
+            throw new Error('No cards Found!');
+          }
+        })
+      );
+  }
+
+  /*
+  updateDocument(): Observable<any> {
+    return this.firestore
+      .collection('cards')
+      .get()
+      .pipe(
+        mergeMap((querySnapshot) => {
+          const updateObservables: Observable<any>[] = [];
+          let index = -1;
+          const date = new Date();
+
+          if (!querySnapshot.empty) {
+            querySnapshot.docs.forEach((doc) => {
+              const dd = doc.data() as Object;
+              index++;
+              const updatePromise = this.firestore
+                .collection('cards')
+                .doc(doc.id)
+                .update({
+                  ...dd,
+                  CreatedAt: date,
+                  UpdatedAt: date,
+                  Index: index,
+                });
+            });
+          }
+          return forkJoin(updateObservables);
+        })
+      );
+  }
+  */
 
   setNewPage(a: number, b: number) {
     let obj = { a: a, b: b };

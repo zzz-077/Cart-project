@@ -44,8 +44,8 @@ export class TableComponent {
   ngOnInit() {
     this.filterServ.filterObject$.subscribe((obj) => {
       if (obj != undefined) {
-        this.DisabledColumn.forEach((item) => {
-          if (obj.Name == item.Name) item.Value = obj.Value;
+        this.DisabledColumn.forEach((item, i) => {
+          if (obj[i].Name == item.Name) item.Value = obj[i].Value;
         });
       }
     });

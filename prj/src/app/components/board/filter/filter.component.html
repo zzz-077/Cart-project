@@ -3,7 +3,7 @@
     <input
       (click)="filterClick(check1, 'Name')"
       #check1
-      [checked]="true"
+      [checked]="checkArr[0]?.Value"
       type="checkbox"
     />
     <p>Name</p>
@@ -12,7 +12,7 @@
     <input
       (click)="filterClick(check2, 'Category')"
       #check2
-      [checked]="true"
+      [checked]="checkArr[1]?.Value"
       type="checkbox"
     />
     <p>Category</p>
@@ -21,7 +21,7 @@
     <input
       (click)="filterClick(check3, 'Price')"
       #check3
-      [checked]="true"
+      [checked]="checkArr[2]?.Value"
       type="checkbox"
     />
     <p>Price</p>
@@ -30,7 +30,7 @@
     <input
       (click)="filterClick(check4, 'Quantity')"
       #check4
-      [checked]="true"
+      [checked]="checkArr[3]?.Value"
       type="checkbox"
     />
     <p>Quantity</p>
