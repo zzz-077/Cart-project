@@ -13,6 +13,8 @@ import { log } from 'console';
 import { FilterService } from '../../../shared/services/filter/filter.service';
 import { EventEmitter } from 'stream';
 import { debounceTime } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { addToCart } from '../../../shared/store/cart.actions';
 
 @Component({
   selector: 'app-table',
@@ -39,7 +41,8 @@ export class TableComponent {
 
   constructor(
     private cardServ: CardsService,
-    private filterServ: FilterService
+    private filterServ: FilterService,
+    private store: Store
   ) {}
   ngOnInit() {
     this.filterServ.filterObject$.subscribe((obj) => {
@@ -143,5 +146,8 @@ export class TableComponent {
       this.CardsArr = [];
       this.CardsArr = data;
     });
+  }
+  addToCartBtn() {
+    this.store.dispatch(addToCart());
   }
 }

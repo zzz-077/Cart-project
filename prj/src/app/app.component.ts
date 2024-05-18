@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { CardsService } from './shared/services/cards/cards.service';
 import { card } from './shared/model/cardModel';
@@ -7,8 +7,11 @@ import { TableComponent } from './components/board/table/table.component';
 import { SearchComponent } from './components/board/search/search.component';
 import { FilterComponent } from './components/board/filter/filter.component';
 import { log } from 'node:console';
-import { debounceTime, find } from 'rxjs';
+import { Observable, debounceTime, find } from 'rxjs';
 import { CartComponent } from './components/board/cart/cart.component';
+import { Store, StoreModule } from '@ngrx/store';
+import { AppState } from './shared/store/app.state';
+import { selectCount } from './shared/store/cart.selector';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,6 +24,7 @@ import { CartComponent } from './components/board/cart/cart.component';
     SearchComponent,
     FilterComponent,
     CartComponent,
+    AsyncPipe,
   ],
 })
 export class AppComponent {
@@ -35,7 +39,10 @@ export class AppComponent {
   isMinPageNumber: boolean = true;
   isFilterFolded: boolean = false;
   isCartOpened: boolean = false;
-  constructor(private cardServ: CardsService) {}
+  cartCount$: Observable<number>;
+  constructor(private cardServ: CardsService, private store: Store<AppState>) {
+    this.cartCount$ = this.store.select(selectCount);
+  }
 
   ngOnInit() {
     this.cardServ.getCardsLength().subscribe((val) => {
@@ -44,15 +51,14 @@ export class AppComponent {
       }
       for (let i = 1; i <= this.pagesLimit; i++) {
         this.pageArr.push(i);
-        // if (i <= 4) this.pageArr.push(i);
-        // else if (i == 5) this.pageArr.push('...');
-        // else if (i == this.pagesLimit + 5) this.pageArr.push(i);
       }
     });
   }
+
   filtericonClick() {
     this.isFilterFolded = !this.isFilterFolded;
   }
+
   filteredObjecFunc(obj: { Name: string; Value: boolean }) {
     this.FilteredColumn = obj;
   }

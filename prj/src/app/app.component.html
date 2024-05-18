@@ -3,7 +3,7 @@
     <app-search></app-search>
     <div (click)="cartClick()" class="cart_box">
       <i class="fa-solid fa-cart-arrow-down"></i>
-      <strong>7</strong>
+      <strong>{{ cartCount$ | async }}</strong>
     </div>
   </div>
   <div class="table-comp">
