@@ -1,4 +1,4 @@
-import { counterState } from './cart.reducers';
+import { counterState } from './counter/cart.reducers';
 
 export interface AppState {
   counter: counterState;

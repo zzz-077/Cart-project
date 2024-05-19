@@ -14,7 +14,7 @@ import { FilterService } from '../../../shared/services/filter/filter.service';
 import { EventEmitter } from 'stream';
 import { debounceTime } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { addToCart } from '../../../shared/store/cart.actions';
+import { addToCart } from '../../../shared/store/counter/cart.actions';
 
 @Component({
   selector: 'app-table',
