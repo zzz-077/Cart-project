@@ -3,12 +3,7 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
-table thead {
-  border-bottom: 1px solid var(--border-color);
-}
-table thead tr {
-  border-bottom: 1px solid var(--border-color);
-}
+
 table thead tr th:nth-child(2) {
   width: 300px;
 }
@@ -27,11 +22,13 @@ table thead tr th div {
 }
 table thead tr th div p,
 i {
-  transition: all 0.2s;
+  transition: all 0.3s;
+  color: white;
 }
 table thead tr th div:hover p,
 table thead tr th div:hover i {
-  color: #386fe6;
+  /* filter: brightness(0.65); */
+  color: var(--icon-hover);
 }
 
 table thead tr i {
@@ -42,6 +39,7 @@ td,
 th {
   text-align: left;
   padding: 10px;
+  color: var(--text-color);
 }
 
 table tbody tr {
@@ -50,11 +48,22 @@ table tbody tr {
   border-radius: var(--border-radius);
   border: 1px solid rgba(0, 0, 0, 0);
 }
+table tbody tr:nth-child(odd) {
+  background-color: #556486;
+}
+table tbody tr:nth-child(even) {
+  background-color: var(--selected-card);
+}
 table tbody tr:hover {
   background-color: var(--selected-card);
-  border: 1px solid #678fe7;
 }
 
+table tbody tr td {
+  padding: 0 1.625rem;
+}
+table tbody tr td:nth-child(1) {
+  padding: 0 10px;
+}
 table tbody tr td:nth-child(1) {
   width: 70px;
   height: 80px;

@@ -1,6 +1,11 @@
-<div class="search_box">
+<div
+  [ngClass]="{ active: isSearchClicked }"
+  (click)="searchClicked()"
+  class="search_box"
+>
   <i class="fa-solid fa-magnifying-glass"></i>
   <input
+    [ngClass]="{ active: isSearchClicked }"
     type="text"
     (input)="inputFunc(input.value)"
     #input

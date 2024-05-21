@@ -49,32 +49,7 @@ export class CardsService {
         })
       );
   }
-  /*
-  getCards(currCardFr: number, currCardTo: number): Observable<any[] | null> {
-    let cardData: any[] = [];
-    return this.firestore
-      .collection('cards')
-      .get()
-      .pipe(
-        map((doc) => {
-          if (!doc.empty) {
-            doc.docs.forEach((obj, i) => {
-              if (i >= currCardFr && i <= currCardTo) {
-                let j = 0;
-                cardData.push(obj.data());
-                cardData[j] = {
-                  ...cardData[j],
-                  Id: obj.id,
-                };
-                j++;
-              }
-            });
-            return cardData;
-          } else throw new Error('No cards Found!');
-        })
-      );
-  }
-*/
+
   getCards(currCardFr: number, currCardTo: number): Observable<any[] | null> {
     return this.firestore
       .collection('cards', (ref) =>

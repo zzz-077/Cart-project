@@ -1,7 +1,9 @@
 <table>
   <thead>
     <tr>
-      <th><p>Image</p></th>
+      <th>
+        <div><p>Image</p></div>
+      </th>
 
       <th *ngIf="DisabledColumn[0].Name === 'Name' && DisabledColumn[0].Value">
         <div (click)="SortClick('Name')">
@@ -76,7 +78,10 @@
         {{ item?.Category }}
       </td>
       <td *ngIf="DisabledColumn[2].Name === 'Price' && DisabledColumn[2].Value">
-        ${{ item?.Price }}
+        <p style="color: gold">
+          $
+          <span style="color: var(--text-color)">{{ item?.Price }}</span>
+        </p>
       </td>
       <td
         *ngIf="DisabledColumn[3].Name === 'Quantity' && DisabledColumn[3].Value"
