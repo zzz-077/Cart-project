@@ -5,85 +5,15 @@
   </div>
   <div class="bottom_col">
     <div class="added_cards">
-      <div class="cards">
+      <div *ngFor="let product of cartproducts$ | async" class="cards">
         <div>
-          <img
-            src="https://rukminim2.flixcart.com/image/750/900/xif0q/physical-game/k/e/f/no-standard-god-of-war-ragnar-k-full-game-ps4-original-imagk49zwt8jg8np.jpeg?q=20&crop=false"
-            alt=""
-          />
-          <h3>God of War</h3>
+          <img [src]="product?.Img" [alt]="product?.Name" />
+          <h3>{{ product?.Name }}</h3>
         </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://rukminim2.flixcart.com/image/750/900/xif0q/physical-game/k/e/f/no-standard-god-of-war-ragnar-k-full-game-ps4-original-imagk49zwt8jg8np.jpeg?q=20&crop=false"
-            alt=""
-          />
-          <h3>God of War</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://rukminim2.flixcart.com/image/750/900/xif0q/physical-game/k/e/f/no-standard-god-of-war-ragnar-k-full-game-ps4-original-imagk49zwt8jg8np.jpeg?q=20&crop=false"
-            alt=""
-          />
-          <h3>God of War</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://rukminim2.flixcart.com/image/750/900/xif0q/physical-game/k/e/f/no-standard-god-of-war-ragnar-k-full-game-ps4-original-imagk49zwt8jg8np.jpeg?q=20&crop=false"
-            alt=""
-          />
-          <h3>God of War</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://rukminim2.flixcart.com/image/750/900/xif0q/physical-game/k/e/f/no-standard-god-of-war-ragnar-k-full-game-ps4-original-imagk49zwt8jg8np.jpeg?q=20&crop=false"
-            alt=""
-          />
-          <h3>God of War</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://rukminim2.flixcart.com/image/750/900/xif0q/physical-game/k/e/f/no-standard-god-of-war-ragnar-k-full-game-ps4-original-imagk49zwt8jg8np.jpeg?q=20&crop=false"
-            alt=""
-          />
-          <h3>God of War</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://rukminim2.flixcart.com/image/750/900/xif0q/physical-game/k/e/f/no-standard-god-of-war-ragnar-k-full-game-ps4-original-imagk49zwt8jg8np.jpeg?q=20&crop=false"
-            alt=""
-          />
-          <h3>God of War</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://rukminim2.flixcart.com/image/750/900/xif0q/physical-game/k/e/f/no-standard-god-of-war-ragnar-k-full-game-ps4-original-imagk49zwt8jg8np.jpeg?q=20&crop=false"
-            alt=""
-          />
-          <h3>God of War</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
+        <i
+          (click)="removeProductclick(product?.Id)"
+          class="fa-solid fa-trash-can"
+        ></i>
       </div>
     </div>
   </div>

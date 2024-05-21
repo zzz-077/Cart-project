@@ -14,7 +14,11 @@ import { FilterService } from '../../../shared/services/filter/filter.service';
 import { EventEmitter } from 'stream';
 import { debounceTime } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { addToCart } from '../../../shared/store/counter/cart.actions';
+import {
+  decrease,
+  incerase,
+} from '../../../shared/store/counter/counter.actions';
+import { addtoCart } from '../../../shared/store/carts/cart.actions';
 
 @Component({
   selector: 'app-table',
@@ -147,7 +151,8 @@ export class TableComponent {
       this.CardsArr = data;
     });
   }
-  addToCartBtn() {
-    this.store.dispatch(addToCart());
+  addToCartBtn(card: card) {
+    this.store.dispatch(incerase());
+    this.store.dispatch(addtoCart({ product: card }));
   }
 }

@@ -11,7 +11,7 @@ import { Observable, debounceTime, find } from 'rxjs';
 import { CartComponent } from './components/board/cart/cart.component';
 import { Store, StoreModule } from '@ngrx/store';
 import { AppState } from './shared/store/app.state';
-import { selectCount } from './shared/store/counter/cart.selector';
+import { selectCount } from './shared/store/counter/counter.selector';
 @Component({
   selector: 'app-root',
   standalone: true,

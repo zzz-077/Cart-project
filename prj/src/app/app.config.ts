@@ -6,7 +6,11 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { environment } from '../environments/environment.development';
 import { StoreModule, provideState, provideStore } from '@ngrx/store';
-import { cartReducer } from './shared/store/counter/cart.reducers';
+import { counterReducer } from './shared/store/counter/counter.reducers';
+import { ProductReducer } from './shared/store/products/product.reducers';
+import { provideEffects } from '@ngrx/effects';
+import { ProductEffect } from './shared/store/products/product.effects';
+import { cartRecudecer } from './shared/store/carts/cart.reducers';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
@@ -15,6 +19,9 @@ export const appConfig: ApplicationConfig = {
     ]),
     provideClientHydration(),
     provideStore(),
-    provideState({ name: 'counter', reducer: cartReducer }),
+    provideState({ name: 'counter', reducer: counterReducer }),
+    provideState({ name: 'product', reducer: ProductReducer }),
+    provideState({ name: 'cart', reducer: cartRecudecer }),
+    provideEffects(ProductEffect),
   ],
 };

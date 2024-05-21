@@ -99,6 +99,29 @@ export class CardsService {
       );
   }
 
+  getAllCards(): Observable<card[] | null> {
+    var cardsArr: card[] = [];
+    return this.firestore
+      .collection('cards')
+      .get()
+      .pipe(
+        map((obj) => {
+          if (!obj.empty) {
+            obj.forEach((doc) => {
+              var data = doc.data() as card;
+              data = {
+                ...data,
+                Id: doc.id,
+              };
+            });
+            return cardsArr;
+          } else {
+            throw new Error('No cards Found!');
+          }
+        })
+      );
+  }
+
   /*
   updateDocument(): Observable<any> {
     return this.firestore
