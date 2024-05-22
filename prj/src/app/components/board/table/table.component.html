@@ -89,9 +89,12 @@
         {{ item?.Quantity }}
       </td>
       <td>
-        <button (click)="addToCartBtn(item)">
-          <i class="fa-solid fa-plus"></i>Add to cart
-        </button>
+        <div (click)="addToCartBtn(item)" class="addToCartbtn">
+          <div class="btn btn-one">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add to cart</span>
+          </div>
+        </div>
       </td>
     </tr>
   </tbody>

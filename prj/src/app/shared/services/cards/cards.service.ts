@@ -144,12 +144,23 @@ export class CardsService {
           if (!doc.empty) {
             let docs = doc.docs;
             docs
-              .map((obj) => obj.data() as card)
+              .map((obj) => {
+                var card = obj.data() as card;
+                return (card = {
+                  ...card,
+                  Id: obj.id,
+                });
+              })
               .filter((card) =>
                 card.Name.toLowerCase().includes(value.toLowerCase())
               )
-              .forEach((filteredCards) => filteredArr.push(filteredCards));
-
+              .forEach((filteredCards) => {
+                filteredCards = {
+                  ...filteredCards,
+                  Id: filteredCards.Id,
+                };
+                filteredArr.push(filteredCards);
+              });
             return filteredArr;
           } else throw new Error('No cards found!');
         })

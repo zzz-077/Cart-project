@@ -1,38 +1,43 @@
 <ul>
   <li>
-    <input
-      (click)="filterClick(check1, 'Name')"
-      #check1
-      [checked]="checkArr[0]?.Value"
-      type="checkbox"
-    />
+    <section>
+      <mat-checkbox
+        (click)="filterClick(check1, 'Name')"
+        #check1
+        [checked]="checkArr[0]?.Value"
+      ></mat-checkbox>
+    </section>
     <p>Name</p>
   </li>
   <li>
-    <input
-      (click)="filterClick(check2, 'Category')"
-      #check2
-      [checked]="checkArr[1]?.Value"
-      type="checkbox"
-    />
+    <section>
+      <mat-checkbox
+        (click)="filterClick(check2, 'Category')"
+        #check2
+        [checked]="checkArr[1]?.Value"
+      ></mat-checkbox>
+    </section>
     <p>Category</p>
   </li>
   <li>
-    <input
-      (click)="filterClick(check3, 'Price')"
-      #check3
-      [checked]="checkArr[2]?.Value"
-      type="checkbox"
-    />
+    <section>
+      <mat-checkbox
+        (click)="filterClick(check3, 'Price')"
+        #check3
+        [checked]="checkArr[2]?.Value"
+      ></mat-checkbox>
+    </section>
+
     <p>Price</p>
   </li>
   <li>
-    <input
-      (click)="filterClick(check4, 'Quantity')"
-      #check4
-      [checked]="checkArr[3]?.Value"
-      type="checkbox"
-    />
+    <section>
+      <mat-checkbox
+        (click)="filterClick(check4, 'Quantity')"
+        #check4
+        [checked]="checkArr[3]?.Value"
+      ></mat-checkbox>
+    </section>
     <p>Quantity</p>
   </li>
 </ul>

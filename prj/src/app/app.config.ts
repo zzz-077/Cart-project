@@ -11,6 +11,7 @@ import { ProductReducer } from './shared/store/products/product.reducers';
 import { provideEffects } from '@ngrx/effects';
 import { ProductEffect } from './shared/store/products/product.effects';
 import { cartRecudecer } from './shared/store/carts/cart.reducers';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
@@ -22,6 +23,6 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: 'counter', reducer: counterReducer }),
     provideState({ name: 'product', reducer: ProductReducer }),
     provideState({ name: 'cart', reducer: cartRecudecer }),
-    provideEffects(ProductEffect),
+    provideEffects(ProductEffect), provideAnimationsAsync(), provideAnimationsAsync(),
   ],
 };

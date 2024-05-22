@@ -74,7 +74,7 @@
 .conatiner .paggination-comp .pag_box button {
   width: auto;
   padding: 0;
-  background-color: #323169e3;
+  background-color: #ffffff00;
 }
 .conatiner .paggination-comp .pag_box .prew-arrow i,
 .conatiner .paggination-comp .pag_box .next-arrow i {
@@ -83,21 +83,16 @@
   font-size: 1.25rem;
   padding: 4px;
   border-radius: 2rem;
-  transition: all 0.1;
+  transition: all 0.3s;
 }
 
 .conatiner .paggination-comp .pag_box .prew-arrow:disabled,
 .conatiner .paggination-comp .pag_box .next-arrow:disabled {
   opacity: 0.3;
 }
-.conatiner .paggination-comp .pag_box .prew-arrow:disabled i:hover,
-.conatiner .paggination-comp .pag_box .next-arrow:disabled i:hover {
-  background-color: #323169e3;
-  color: var(--text-color);
-}
+
 .conatiner .paggination-comp .pag_box .prew-arrow i:hover,
 .conatiner .paggination-comp .pag_box .next-arrow i:hover {
-  background-color: rgba(173, 170, 170, 0.252);
   color: whitesmoke;
 }
 

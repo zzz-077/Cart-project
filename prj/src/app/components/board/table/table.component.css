@@ -9,7 +9,10 @@ table thead tr th:nth-child(2) {
 }
 
 table thead tr th:last-child {
-  width: 150px;
+  width: 200px;
+}
+table thead tr {
+  border-left: 6px solid var(--icon-hover);
 }
 
 table thead tr th div {
@@ -45,14 +48,13 @@ th {
 table tbody tr {
   cursor: pointer;
   transition: all 0.2s;
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(0, 0, 0, 0);
+  border-left: 2px solid var(--icon-hover);
 }
 table tbody tr:nth-child(odd) {
-  background-color: #556486;
+  /* background-color: #556486; */
 }
 table tbody tr:nth-child(even) {
-  background-color: var(--selected-card);
+  /* background-color: var(--selected-card); */
 }
 table tbody tr:hover {
   background-color: var(--selected-card);
@@ -76,4 +78,57 @@ table tbody tr td:nth-child(1) img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.btn-one {
+  color: var(--text-color);
+  transition: all 0.3s;
+  position: relative;
+  padding: 6px 4px;
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  text-align: center;
+}
+.btn-one span {
+  transition: all 0.3s;
+}
+.btn-one::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  transform: scale(0.1, 1);
+}
+.btn-one:hover span {
+  letter-spacing: 2px;
+}
+.btn-one:hover::before {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+.btn-one::after {
+  border-radius: 0.25rem;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.3s;
+  background-color: #afc9f440;
+}
+.btn-one:hover::after {
+  opacity: 0;
+  transform: scale(0.1, 1);
 }

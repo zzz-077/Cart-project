@@ -2,6 +2,7 @@
   --page-color: #070f2b;
   --text-color: #edf4ff;
   --component-color: #1b1a55;
+  --selected-card: #556486;
   --button-color: #6592f3;
   --icon-hover: #afcaf4;
   --border-radius: 0.3rem;
@@ -76,3 +77,6 @@ button i {
 button:hover {
   background-color: #386fe6;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -4,11 +4,13 @@ import { EventEmitter } from 'node:stream';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FilterService } from '../../../shared/services/filter/filter.service';
 import { filterObj } from '../../../shared/model/cardModel';
+import { CommonModule } from '@angular/common';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-filter',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, MatCheckboxModule],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.css',
 })
