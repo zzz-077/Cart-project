@@ -17,19 +17,17 @@ import { cartSelector } from '../../../shared/store/carts/cart.selectors';
 })
 export class CartComponent {
   // error!: Observable<string | null>;
+  @Output() hideCart = new EventEmitter<boolean>();
   cartproducts$: Observable<card[]>;
   SelectedProducts: card[] = [];
   constructor(private store: Store<AppState>) {
     this.store.dispatch(ProductActions.productsLoad());
     this.cartproducts$ = this.store.select(cartSelector);
     // this.error = this.store.select(selectProductsError);
-
     this.cartproducts$.subscribe((product) => {
       this.SelectedProducts = product;
     });
   }
-
-  @Output() hideCart = new EventEmitter<boolean>();
 
   hideCartFunc() {
     this.hideCart.emit(false);

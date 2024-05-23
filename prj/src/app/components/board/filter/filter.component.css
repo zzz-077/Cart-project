@@ -9,14 +9,9 @@ ul {
 ul li {
   display: flex;
   align-items: center;
-  gap: 1rem;
 }
 
 ul li p {
   color: var(--text-color);
-}
-ul li mat-checkbox {
-  width: 16px;
-  height: 16px;
-  color: var(--icon-hover);
+  margin: 0;
 }

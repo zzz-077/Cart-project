@@ -27,11 +27,21 @@ table thead tr th div p,
 i {
   transition: all 0.3s;
   color: white;
+  margin: 0;
+  border-bottom: 2px solid #00000000;
+}
+table thead tr th:nth-child(1) div p {
+  border-bottom: 0;
 }
 table thead tr th div:hover p,
 table thead tr th div:hover i {
-  /* filter: brightness(0.65); */
   color: var(--icon-hover);
+}
+table thead tr th div:hover p {
+  border-bottom: 2px solid var(--icon-hover);
+}
+table thead tr th:nth-child(1) div:hover p {
+  border-bottom: 0;
 }
 
 table thead tr i {
@@ -81,12 +91,14 @@ table tbody tr td:nth-child(1) img {
 }
 
 .btn-one {
+  z-index: 0;
   color: var(--text-color);
   transition: all 0.3s;
   position: relative;
   padding: 6px 4px;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0.45rem;
   text-align: center;
 }
