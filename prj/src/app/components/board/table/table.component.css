@@ -60,12 +60,17 @@ table tbody tr {
   transition: all 0.2s;
   border-left: 2px solid var(--icon-hover);
 }
-table tbody tr:nth-child(odd) {
-  /* background-color: #556486; */
+table tbody .notFound_alert_row {
+  border-left: 0;
 }
-table tbody tr:nth-child(even) {
-  /* background-color: var(--selected-card); */
+table tbody .notFound_alert_row td:nth-child(3) {
+  text-align: end;
 }
+table tbody .notFound_alert_row td:nth-child(3) p {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
 table tbody tr:hover {
   background-color: var(--selected-card);
 }

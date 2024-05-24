@@ -58,6 +58,8 @@ export class TableComponent {
     });
 
     this.cardServ.searchedCards$.subscribe((data) => {
+      console.log(data);
+
       if (data != null) {
         this.CardsArr = data;
       } else {
