@@ -38,4 +38,14 @@ export class CartComponent {
     );
     this.store.dispatch(CounterActions.decrease());
   }
+  checkNameLength(name: string | undefined): string | undefined {
+    if (name !== undefined) {
+      if (name.length <= 15) {
+        return name;
+      }
+    }
+    return undefined;
+  }
+  increaseQuantity() {}
+  decreaseQuantity() {}
 }

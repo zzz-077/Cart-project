@@ -8,72 +8,31 @@
       <div *ngFor="let product of cartproducts$ | async" class="cards">
         <div>
           <img [src]="product?.Img" [alt]="product?.Name" />
-          <h3>{{ product?.Name }}</h3>
+          <div class="info_box">
+            @if (checkNameLength(product?.Name)) {
+            <h3>{{ product?.Name }}</h3>
+            }@else{
+            <h3>{{ product?.Name?.substring(0, 15) + "..." }}</h3>
+            }
+            <div class="card_content">
+              <div class="quantity_box">
+                <button (click)="decreaseQuantity()">-</button>
+                <span>1</span>
+                <button (click)="increaseQuantity()">+</button>
+              </div>
+              <div class="price_box">
+                <h2 style="color: gold">
+                  $
+                  <p>{{ product?.Price }}</p>
+                </h2>
+              </div>
+            </div>
+          </div>
         </div>
         <i
           (click)="removeProductclick(product?.Id)"
           class="fa-solid fa-trash-can"
         ></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://m.media-amazon.com/images/I/81JvfuMVyXL._AC_UF1000,1000_QL80_DpWeblab_.jpg"
-            alt=""
-          />
-          <h3>Civilization VI</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://m.media-amazon.com/images/I/81JvfuMVyXL._AC_UF1000,1000_QL80_DpWeblab_.jpg"
-            alt=""
-          />
-          <h3>Civilization VI</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://m.media-amazon.com/images/I/81JvfuMVyXL._AC_UF1000,1000_QL80_DpWeblab_.jpg"
-            alt=""
-          />
-          <h3>Civilization VI</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://m.media-amazon.com/images/I/81JvfuMVyXL._AC_UF1000,1000_QL80_DpWeblab_.jpg"
-            alt=""
-          />
-          <h3>Civilization VI</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://m.media-amazon.com/images/I/81JvfuMVyXL._AC_UF1000,1000_QL80_DpWeblab_.jpg"
-            alt=""
-          />
-          <h3>Civilization VI</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
-      </div>
-      <div class="cards">
-        <div>
-          <img
-            src="https://m.media-amazon.com/images/I/81JvfuMVyXL._AC_UF1000,1000_QL80_DpWeblab_.jpg"
-            alt=""
-          />
-          <h3>Civilization VI</h3>
-        </div>
-        <i class="fa-solid fa-trash-can"></i>
       </div>
     </div>
   </div>
