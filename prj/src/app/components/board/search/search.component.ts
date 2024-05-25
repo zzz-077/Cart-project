@@ -18,8 +18,10 @@ export class SearchComponent {
   constructor(private cardServ: CardsService) {}
   isSearchClicked: boolean = false;
   searchTimeout: any;
+
   inputFunc(value: string) {
     clearTimeout(this.searchTimeout);
+
     if (value.trim() != '') {
       this.isSearchClicked = true;
       this.cardServ.findCards(value).subscribe((data) => {

@@ -7,5 +7,13 @@ export const addtoCart = createAction(
 );
 export const removeFromCart = createAction(
   '[Item] Remove Item From Cart',
-  props<{ productId: string }>()
+  props<{ product: card }>()
+);
+export const IncrProdQuant = createAction(
+  '[Item] Increase Quantity of Item',
+  props<{ product: card }>()
+);
+export const DecrProdQuant = createAction(
+  '[Item] Decrease Quantity of Item',
+  props<{ product: card }>()
 );

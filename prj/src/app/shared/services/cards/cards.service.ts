@@ -96,7 +96,6 @@ export class CardsService {
         })
       );
   }
-
   /*
   updateDocument(): Observable<any> {
     return this.firestore
@@ -117,9 +116,7 @@ export class CardsService {
                 .doc(doc.id)
                 .update({
                   ...dd,
-                  CreatedAt: date,
-                  UpdatedAt: date,
-                  Index: index,
+                  SelectedQuantity: 1,
                 });
             });
           }
@@ -127,8 +124,7 @@ export class CardsService {
         })
       );
   }
-  */
-
+*/
   setNewPage(a: number, b: number) {
     let obj = { a: a, b: b };
     this.cardsObservable.next(obj);

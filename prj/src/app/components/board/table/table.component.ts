@@ -12,13 +12,15 @@ import { card, filterObj } from '../../../shared/model/cardModel';
 import { log } from 'console';
 import { FilterService } from '../../../shared/services/filter/filter.service';
 import { EventEmitter } from 'stream';
-import { debounceTime } from 'rxjs';
+import { Observable, debounceTime } from 'rxjs';
 import { Store } from '@ngrx/store';
 import {
   decrease,
   incerase,
 } from '../../../shared/store/counter/counter.actions';
 import { addtoCart } from '../../../shared/store/carts/cart.actions';
+import { cartSelector } from '../../../shared/store/carts/cart.selectors';
+import { AppState } from '../../../shared/store/app.state';
 
 @Component({
   selector: 'app-table',
@@ -28,6 +30,7 @@ import { addtoCart } from '../../../shared/store/carts/cart.actions';
   styleUrl: './table.component.css',
 })
 export class TableComponent {
+  cartproducts$: Observable<card[]>;
   CardsArr: card[] = [];
   isSearched: boolean = false;
   isFilterFolded: boolean = false;
@@ -35,7 +38,9 @@ export class TableComponent {
   Iconclick: boolean = false;
   currCardFr: number = 0;
   currCardTo: number = 5;
-
+  checkInCartArr: card[] = [];
+  isCardExistsInCart: boolean = false;
+  clickedCardId: string = '';
   DisabledColumn: filterObj[] = [
     { Name: 'Name', Value: true },
     { Name: 'Category', Value: true },
@@ -46,8 +51,13 @@ export class TableComponent {
   constructor(
     private cardServ: CardsService,
     private filterServ: FilterService,
-    private store: Store
-  ) {}
+    private store: Store<AppState>
+  ) {
+    this.cartproducts$ = this.store.select(cartSelector);
+    this.cartproducts$.subscribe((data) => {
+      if (data != undefined || null) this.checkInCartArr = data;
+    });
+  }
   ngOnInit() {
     this.filterServ.filterObject$.subscribe((obj) => {
       if (obj != undefined) {
@@ -58,7 +68,7 @@ export class TableComponent {
     });
 
     this.cardServ.searchedCards$.subscribe((data) => {
-      console.log(data);
+      // console.log(data);
 
       if (data != null) {
         this.CardsArr = data;
@@ -154,7 +164,19 @@ export class TableComponent {
     });
   }
   addToCartBtn(card: card) {
-    this.store.dispatch(incerase());
-    this.store.dispatch(addtoCart({ product: card }));
+    const checkIsExists = this.checkInCartArr.some((obj) => {
+      return obj.Id === card.Id;
+    });
+    if (!checkIsExists) {
+      this.isCardExistsInCart = false;
+      this.store.dispatch(incerase());
+      this.store.dispatch(addtoCart({ product: card }));
+    } else {
+      this.clickedCardId = card.Id;
+      this.isCardExistsInCart = true;
+      setTimeout(() => {
+        this.isCardExistsInCart = false;
+      }, 3000);
+    }
   }
 }

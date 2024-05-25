@@ -66,7 +66,6 @@
   </thead>
   <tbody>
     @if (CardsArr.length>0) {
-
     <tr *ngFor="let item of CardsArr">
       <td>
         <img [src]="item?.Img" alt="" />
@@ -92,6 +91,12 @@
       </td>
       <td>
         <div (click)="addToCartBtn(item)" class="addToCartbtn">
+          <div
+            *ngIf="isCardExistsInCart && item?.Id === clickedCardId"
+            class="alreadyIncart_alert"
+          >
+            <p>Item is Already In cart</p>
+          </div>
           <div class="btn btn-one">
             <i class="fa-solid fa-plus"></i>
             <span>Add to cart</span>

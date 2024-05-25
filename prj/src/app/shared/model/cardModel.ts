@@ -8,6 +8,7 @@ export interface card {
   Index: number;
   CreatedAt: Date;
   UpdatedAt: Date;
+  SelectedQuantity: number;
 }
 
 export interface filterObj {

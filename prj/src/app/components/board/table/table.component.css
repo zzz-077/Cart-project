@@ -78,6 +78,9 @@ table tbody tr:hover {
 table tbody tr td {
   padding: 0 1.625rem;
 }
+table tbody tr td p {
+  margin: 0;
+}
 table tbody tr td:nth-child(1) {
   padding: 0 10px;
 }
@@ -93,6 +96,46 @@ table tbody tr td:nth-child(1) img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.addToCartbtn {
+  position: relative;
+}
+.addToCartbtn .alreadyIncart_alert {
+  padding: 2px 4px;
+  border-radius: 5rem;
+  background-color: #eb4545;
+  position: absolute;
+  top: 50%;
+  left: -50%;
+  transform: translate(-50%, -50%);
+  animation: alert_anim linear 2.7s;
+}
+@keyframes alert_anim {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.addToCartbtn .alreadyIncart_alert p {
+  font-size: 11px;
+  position: relative;
+  margin: 0;
+  z-index: 1;
+}
+.addToCartbtn .alreadyIncart_alert p::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: -7px;
+  width: 24px;
+  height: 24px;
+  background-color: #eb4545;
+  transform: rotate(-45deg);
+  z-index: -1;
+  border-top-right-radius: 0.7rem;
+  border-bottom-left-radius: 0.7rem;
 }
 
 .btn-one {

@@ -16,9 +16,14 @@
             }
             <div class="card_content">
               <div class="quantity_box">
-                <button (click)="decreaseQuantity()">-</button>
-                <span>1</span>
-                <button (click)="increaseQuantity()">+</button>
+                <button
+                  [disabled]="product?.SelectedQuantity === 1"
+                  (click)="decreaseQuantity(product)"
+                >
+                  -
+                </button>
+                <span>{{ product?.SelectedQuantity }}</span>
+                <button (click)="increaseQuantity(product)">+</button>
               </div>
               <div class="price_box">
                 <h2 style="color: gold">
@@ -30,7 +35,7 @@
           </div>
         </div>
         <i
-          (click)="removeProductclick(product?.Id)"
+          (click)="removeProductclick(product)"
           class="fa-solid fa-trash-can"
         ></i>
       </div>
@@ -38,8 +43,8 @@
   </div>
   <div class="bottom_col">
     <div>
-      <h3>Total Price:</h3>
-      <strong>$67.55</strong>
+      <h3>Total Price</h3>
+      <strong>${{ cartTotalPrice$ | async }}</strong>
     </div>
   </div>
 </div>
