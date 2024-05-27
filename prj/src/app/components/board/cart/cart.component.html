@@ -5,8 +5,12 @@
   </div>
   <div class="middle_col">
     <div class="added_cards">
-      <div *ngFor="let product of cartproducts$ | async" class="cards">
-        <div>
+      <div
+        [ngClass]="{ active: removeCardId === product?.Id }"
+        *ngFor="let product of cartproducts$ | async"
+        class="cards"
+      >
+        <div class="card_box">
           <img [src]="product?.Img" [alt]="product?.Name" />
           <div class="info_box">
             @if (checkNameLength(product?.Name)) {

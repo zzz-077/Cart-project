@@ -60,7 +60,6 @@ button {
   border: 0;
   padding: 0.5rem 0.875rem;
   border-radius: 0.875rem;
-  background-color: var(--button-color);
   color: white;
   transition: all 0.2s;
   display: flex;

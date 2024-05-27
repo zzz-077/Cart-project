@@ -51,6 +51,13 @@
   border-radius: 0.25rem;
   height: 70px;
   position: relative;
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 0.5s;
+}
+.container .middle_col .cards.active {
+  transform: translateX(-400px);
+  opacity: 0;
 }
 .container .middle_col .cards::after {
   content: "";
@@ -58,7 +65,7 @@
   top: 0;
   right: 0;
   width: 0;
-  background: linear-gradient(to left, #ee6161b8 10%, transparent);
+  background: linear-gradient(to left, #db717157 10%, transparent);
   transition: all 0.4s;
   z-index: 0;
 }
@@ -73,6 +80,7 @@
   align-items: center;
   gap: 0.25rem;
 }
+
 .container .middle_col .cards img {
   width: 70px;
   height: 100%;

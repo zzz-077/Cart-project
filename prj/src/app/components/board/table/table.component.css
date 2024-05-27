@@ -72,7 +72,7 @@ table tbody .notFound_alert_row td:nth-child(3) p {
 }
 
 table tbody tr:hover {
-  background-color: var(--selected-card);
+  background-color: #24235bd0;
 }
 
 table tbody tr td {
@@ -107,17 +107,15 @@ table tbody tr td:nth-child(1) img {
   position: absolute;
   top: 50%;
   left: -50%;
+  transition: 4s all ease-in-out;
   transform: translate(-50%, -50%);
-  animation: alert_anim linear 2.7s;
+  filter: opacity(0);
 }
-@keyframes alert_anim {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+.addToCartbtn .alreadyIncart_alert.visible {
+  transition: 0.2s all ease-in-out;
+  filter: opacity(1);
 }
+
 .addToCartbtn .alreadyIncart_alert p {
   font-size: 11px;
   position: relative;
@@ -138,57 +136,17 @@ table tbody tr td:nth-child(1) img {
   border-bottom-left-radius: 0.7rem;
 }
 
-.btn-one {
-  z-index: 0;
-  color: var(--text-color);
+.add_cart_Btn {
   transition: all 0.3s;
-  position: relative;
-  padding: 6px 4px;
+  width: 148px;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 0.45rem;
-  text-align: center;
+  color: var(--text-color);
+  padding: 8px 4px;
+  background-color: #0b1537;
+  border-radius: var(--border-radius);
 }
-.btn-one span {
-  transition: all 0.3s;
-}
-.btn-one::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0;
-  transition: all 0.3s;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
-  border-top-style: solid;
-  border-bottom-style: solid;
-  transform: scale(0.1, 1);
-}
-.btn-one:hover span {
-  letter-spacing: 2px;
-}
-.btn-one:hover::before {
-  opacity: 1;
-  transform: scale(1, 1);
-}
-.btn-one::after {
-  border-radius: 0.25rem;
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  transition: all 0.3s;
-  background-color: #afc9f440;
-}
-.btn-one:hover::after {
-  opacity: 0;
-  transform: scale(0.1, 1);
+.add_cart_Btn:hover {
+  filter: brightness(1.4);
 }

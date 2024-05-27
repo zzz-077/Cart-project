@@ -23,6 +23,7 @@ export class CartComponent {
   @Output() hideCart = new EventEmitter<boolean>();
   cartproducts$: Observable<card[]>;
   cartTotalPrice$: Observable<number>;
+  removeCardId: string | null = '';
 
   constructor(private store: Store<AppState>) {
     // this.store.dispatch(ProductActions.productsLoad());
@@ -40,10 +41,16 @@ export class CartComponent {
     this.hideCart.emit(false);
   }
   removeProductclick(Product: card | undefined) {
-    this.store.dispatch(
-      CartActions.removeFromCart({ product: Product as card })
-    );
-    this.store.dispatch(CounterActions.decrease());
+    if (Product != undefined) {
+      this.removeCardId = Product.Id;
+      setTimeout(() => {
+        this.store.dispatch(
+          CartActions.removeFromCart({ product: Product as card })
+        );
+        this.store.dispatch(CounterActions.decrease());
+        this.removeCardId = null;
+      }, 490);
+    }
   }
   checkNameLength(name: string | undefined): string | undefined {
     if (name !== undefined) {

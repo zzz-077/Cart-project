@@ -1,7 +1,11 @@
 <div class="conatiner">
   <div class="search-comp">
     <app-search></app-search>
-    <div (click)="cartClick()" class="cart_box">
+    <div
+      [ngClass]="{ active: isCartAnimationStarted }"
+      (click)="cartClick()"
+      class="cart_box"
+    >
       <i class="fa-solid fa-cart-arrow-down"></i>
       <strong>{{ cartCount$ | async }}</strong>
     </div>

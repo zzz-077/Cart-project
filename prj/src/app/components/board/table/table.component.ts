@@ -30,17 +30,18 @@ import { AppState } from '../../../shared/store/app.state';
   styleUrl: './table.component.css',
 })
 export class TableComponent {
-  cartproducts$: Observable<card[]>;
-  CardsArr: card[] = [];
+  currCardTo: number = 5;
+  currCardFr: number = 0;
+  whichSortIcon: string = '';
+  clickedCardId: string = '';
   isSearched: boolean = false;
   isFilterFolded: boolean = false;
-  whichSortIcon: string = '';
   Iconclick: boolean = false;
-  currCardFr: number = 0;
-  currCardTo: number = 5;
-  checkInCartArr: card[] = [];
   isCardExistsInCart: boolean = false;
-  clickedCardId: string = '';
+  isVisible: boolean = false;
+  cartproducts$: Observable<card[]>;
+  CardsArr: card[] = [];
+  checkInCartArr: card[] = [];
   DisabledColumn: filterObj[] = [
     { Name: 'Name', Value: true },
     { Name: 'Category', Value: true },
@@ -164,19 +165,30 @@ export class TableComponent {
     });
   }
   addToCartBtn(card: card) {
-    const checkIsExists = this.checkInCartArr.some((obj) => {
+    var checkIsExists = false;
+    this.isCardExistsInCart = false;
+    checkIsExists = this.checkInCartArr.some((obj) => {
       return obj.Id === card.Id;
     });
     if (!checkIsExists) {
-      this.isCardExistsInCart = false;
+      this.cardServ.CartAnimationObservable.next(true);
       this.store.dispatch(incerase());
       this.store.dispatch(addtoCart({ product: card }));
     } else {
+      this.cardServ.CartAnimationObservable.next(false);
+
       this.clickedCardId = card.Id;
       this.isCardExistsInCart = true;
       setTimeout(() => {
-        this.isCardExistsInCart = false;
-      }, 3000);
+        this.isVisible = true;
+      }, 10);
+
+      setTimeout(() => {
+        this.isVisible = false;
+        setTimeout(() => {
+          this.isCardExistsInCart = false;
+        }, 4000);
+      }, 4000);
     }
   }
 }

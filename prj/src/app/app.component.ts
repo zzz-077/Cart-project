@@ -29,19 +29,28 @@ import { selectCount } from './shared/store/counter/counter.selector';
 })
 export class AppComponent {
   title = 'prj';
-  FilteredColumn: {} = {};
   CurrentPage: number = 1;
   pagesLimit: number = 0;
-  pageArr: any[] = [];
   currCardFr: number = 0;
   currCardTo: number = 5;
   isMaxPageNumber: boolean = false;
   isMinPageNumber: boolean = true;
   isFilterFolded: boolean = false;
   isCartOpened: boolean = false;
+  isCartAnimationStarted: boolean = false;
+  pageArr: any[] = [];
+  FilteredColumn: {} = {};
   cartCount$: Observable<number>;
   constructor(private cardServ: CardsService, private store: Store<AppState>) {
     this.cartCount$ = this.store.select(selectCount);
+    this.cardServ.cartAnimation$.subscribe((bool) => {
+      if (bool) {
+        this.isCartAnimationStarted = bool;
+        setTimeout(() => {
+          this.isCartAnimationStarted = false;
+        }, 890);
+      }
+    });
   }
 
   ngOnInit() {

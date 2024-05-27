@@ -33,6 +33,9 @@ export class CardsService {
   public SearchedCardsObservable = new BehaviorSubject<any>(null);
   searchedCards$: Observable<any> = this.SearchedCardsObservable.asObservable();
 
+  public CartAnimationObservable = new BehaviorSubject<boolean>(false);
+  cartAnimation$: Observable<any> = this.CartAnimationObservable.asObservable();
+
   getCardsLength(): Observable<number | null> {
     return this.firestore
       .collection('cards')

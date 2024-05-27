@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardsService } from '../../../shared/services/cards/cards.service';
-import { debounceTime } from 'rxjs';
+import { Subject, debounceTime, switchMap } from 'rxjs';
 import { setInterval } from 'timers/promises';
 import {
   TimeInterval,
@@ -15,7 +15,21 @@ import {
   styleUrl: './search.component.css',
 })
 export class SearchComponent {
-  constructor(private cardServ: CardsService) {}
+  private searchTerms = new Subject<string>();
+  constructor(private cardServ: CardsService) {
+    this.searchTerms
+      .pipe(
+        debounceTime(500), // Adjust debounce time as needed
+        switchMap((term) => (term.trim() ? this.cardServ.findCards(term) : []))
+      )
+      .subscribe((data) => {
+        if (data && data.length > 0) {
+          this.cardServ.SearchedCardsObservable.next(data);
+        } else {
+          this.cardServ.SearchedCardsObservable.next(null);
+        }
+      });
+  }
   isSearchClicked: boolean = false;
   searchTimeout: any;
 
@@ -24,13 +38,7 @@ export class SearchComponent {
 
     if (value.trim() != '') {
       this.isSearchClicked = true;
-      this.cardServ.findCards(value).subscribe((data) => {
-        if (data != null && data.length != 0) {
-          this.cardServ.SearchedCardsObservable.next(data);
-        } else {
-          this.cardServ.SearchedCardsObservable.next(null);
-        }
-      });
+      this.searchTerms.next(value);
     } else {
       this.searchTimeout = setTimeout(() => {
         this.isSearchClicked = false;
