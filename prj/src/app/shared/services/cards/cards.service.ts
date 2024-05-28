@@ -30,7 +30,7 @@ export class CardsService {
   public cardsObservable = new BehaviorSubject<{}>({ a: 0, b: 5 });
   newCards$: Observable<any> = this.cardsObservable.asObservable();
 
-  public SearchedCardsObservable = new BehaviorSubject<any>(null);
+  public SearchedCardsObservable = new BehaviorSubject<any>(null || '');
   searchedCards$: Observable<any> = this.SearchedCardsObservable.asObservable();
 
   public CartAnimationObservable = new BehaviorSubject<boolean>(false);
@@ -128,6 +128,7 @@ export class CardsService {
       );
   }
 */
+
   setNewPage(a: number, b: number) {
     let obj = { a: a, b: b };
     this.cardsObservable.next(obj);

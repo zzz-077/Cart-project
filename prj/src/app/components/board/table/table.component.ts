@@ -21,19 +21,21 @@ import {
 import { addtoCart } from '../../../shared/store/carts/cart.actions';
 import { cartSelector } from '../../../shared/store/carts/cart.selectors';
 import { AppState } from '../../../shared/store/app.state';
-
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxSkeletonLoaderModule],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',
 })
 export class TableComponent {
   currCardTo: number = 5;
   currCardFr: number = 0;
+  loadersLength: number[] = [1, 2, 3, 4, 5, 6];
   whichSortIcon: string = '';
   clickedCardId: string = '';
+  isData: boolean = false;
   isSearched: boolean = false;
   isFilterFolded: boolean = false;
   Iconclick: boolean = false;
@@ -58,8 +60,7 @@ export class TableComponent {
     this.cartproducts$.subscribe((data) => {
       if (data != undefined || null) this.checkInCartArr = data;
     });
-  }
-  ngOnInit() {
+
     this.filterServ.filterObject$.subscribe((obj) => {
       if (obj != undefined) {
         this.DisabledColumn.forEach((item, i) => {
@@ -69,11 +70,16 @@ export class TableComponent {
     });
 
     this.cardServ.searchedCards$.subscribe((data) => {
-      // console.log(data);
+      console.log(data);
 
-      if (data != null) {
+      if (data !== 'notFound' && data != null) {
         this.CardsArr = data;
+        this.isData = true;
+      } else if (data === 'notFound') {
+        this.CardsArr = [];
+        this.isData = false;
       } else {
+        this.isData = true;
         this.CardsArr = [];
       }
     });

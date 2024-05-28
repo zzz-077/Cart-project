@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardsService } from '../../../shared/services/cards/cards.service';
-import { Subject, debounceTime, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  debounceTime,
+  switchMap,
+} from 'rxjs';
 import { setInterval } from 'timers/promises';
 import {
   TimeInterval,
@@ -16,17 +22,35 @@ import {
 })
 export class SearchComponent {
   private searchTerms = new Subject<string>();
+  private getPrevCards = new Subject<[number, number]>();
   constructor(private cardServ: CardsService) {
     this.searchTerms
       .pipe(
-        debounceTime(500), // Adjust debounce time as needed
+        debounceTime(500),
         switchMap((term) => (term.trim() ? this.cardServ.findCards(term) : []))
       )
       .subscribe((data) => {
+        // console.log('works1:', data);
         if (data && data.length > 0) {
           this.cardServ.SearchedCardsObservable.next(data);
-        } else {
-          this.cardServ.SearchedCardsObservable.next(null);
+        } else if (data && data.length == 0) {
+          this.cardServ.SearchedCardsObservable.next('notFound');
+        }
+      });
+
+    this.getPrevCards
+      .pipe(
+        debounceTime(750),
+        switchMap(([val1, val2]) => {
+          return this.cardServ.getCards(val1, val2);
+        })
+      )
+      .subscribe((data) => {
+        // console.log('works2:', data);
+        if (data && data.length > 0) {
+          this.cardServ.SearchedCardsObservable.next(data);
+        } else if (data && data.length == 0) {
+          this.cardServ.SearchedCardsObservable.next('notFound');
         }
       });
   }
@@ -51,11 +75,10 @@ export class SearchComponent {
           val2 = data?.b;
         }
       });
-      this.cardServ.getCards(val1, val2).subscribe((data) => {
-        this.cardServ.SearchedCardsObservable.next(data);
-      });
+      this.getPrevCards.next([val1, val2]);
     }
   }
+
   searchClicked() {
     this.isSearchClicked = true;
   }

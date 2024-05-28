@@ -64,7 +64,13 @@
     </tr>
   </thead>
   <tbody>
-    @if (CardsArr.length>0) {
+    @if(!isData){
+    <tr class="notFound_alert_row">
+      <td></td>
+      <td></td>
+      <td><p>Not such Games Try another ones!</p></td>
+    </tr>
+    } @else if (CardsArr.length>0) {
     <tr *ngFor="let item of CardsArr">
       <td>
         <img [src]="item?.Img" alt="" />
@@ -104,11 +110,26 @@
         </div>
       </td>
     </tr>
-    }@else{
-    <tr class="notFound_alert_row">
-      <td></td>
-      <td></td>
-      <td><p>Not such Games Try another ones!</p></td>
+    } @else{
+    <tr ngClass="loader_class" *ngFor="let i of loadersLength" class="">
+      <td>
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </td>
+      <td>
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </td>
+      <td>
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </td>
+      <td>
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </td>
+      <td>
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </td>
+      <td>
+        <ngx-skeleton-loader count="1" appearance="line" />
+      </td>
     </tr>
     }
   </tbody>
