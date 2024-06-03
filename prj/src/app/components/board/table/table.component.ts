@@ -70,8 +70,6 @@ export class TableComponent {
     });
 
     this.cardServ.searchedCards$.subscribe((data) => {
-      console.log(data);
-
       if (data !== 'notFound' && data != null) {
         this.CardsArr = data;
         this.isData = true;

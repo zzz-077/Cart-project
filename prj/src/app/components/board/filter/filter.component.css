@@ -15,3 +15,17 @@ ul li p {
   color: var(--text-color);
   margin: 0;
 }
+/*/////////////////////////////////////*/
+/*/////////////////////////////////////*/
+/*/////////////RESPONSIVE//////////////*/
+/*/////////////////////////////////////*/
+/*/////////////////////////////////////*/
+@media (max-width: 830px) {
+  ul {
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 1rem;
+    overflow: hidden;
+    overflow-x: auto;
+  }
+}

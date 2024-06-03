@@ -1,11 +1,16 @@
 table {
   font-family: arial, sans-serif;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 10px;
   width: 100%;
+  overflow-x: auto;
 }
 
 table thead tr th:nth-child(2) {
   width: 300px;
+}
+table thead tr th:nth-child(1) {
+  width: 80px;
 }
 
 table thead tr th:last-child {
@@ -56,9 +61,9 @@ th {
 }
 
 table tbody tr {
-  cursor: pointer;
   transition: all 0.2s;
   border-left: 2px solid var(--icon-hover);
+  margin-bottom: 0.5rem;
 }
 table tbody .notFound_alert_row {
   border-left: 0;
@@ -82,15 +87,14 @@ table tbody tr td p {
   margin: 0;
 }
 table tbody tr td:nth-child(1) {
-  padding: 0 10px;
+  padding: 0;
 }
 table tbody tr td:nth-child(1) {
-  width: 70px;
-  height: 80px;
+  width: 80px;
 }
 table tbody tr td:nth-child(1).active {
   width: 70px;
-  height: 180px;
+  height: auto;
 }
 table tbody tr td:nth-child(1) img {
   width: 100%;

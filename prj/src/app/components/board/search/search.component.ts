@@ -82,4 +82,7 @@ export class SearchComponent {
   searchClicked() {
     this.isSearchClicked = true;
   }
+  hideSearchBox() {
+    this.isSearchClicked = false;
+  }
 }
