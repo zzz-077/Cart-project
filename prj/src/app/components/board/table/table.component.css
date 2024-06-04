@@ -154,7 +154,7 @@ table tbody tr td:nth-child(1) img {
 .add_cart_Btn:hover {
   filter: brightness(1.4);
 }
-:host >>> ngx-skeleton-loader .skeleton-loader {
+:host ::ng-deep ngx-skeleton-loader .skeleton-loader {
   width: 100%;
   height: 85px;
   margin: 0;
@@ -162,14 +162,39 @@ table tbody tr td:nth-child(1) img {
   background-color: var(--icon-hover);
 }
 
-:host >>> .loader_class td:nth-child(2) ngx-skeleton-loader .skeleton-loader,
-:host >>> .loader_class td:nth-child(3) ngx-skeleton-loader .skeleton-loader,
-:host >>> .loader_class td:nth-child(4) ngx-skeleton-loader .skeleton-loader,
-:host >>> .loader_class td:nth-child(5) ngx-skeleton-loader .skeleton-loader {
+:host
+  ::ng-deep
+  .loader_class
+  td:nth-child(2)
+  ngx-skeleton-loader
+  .skeleton-loader,
+:host
+  ::ng-deep
+  .loader_class
+  td:nth-child(3)
+  ngx-skeleton-loader
+  .skeleton-loader,
+:host
+  ::ng-deep
+  .loader_class
+  td:nth-child(4)
+  ngx-skeleton-loader
+  .skeleton-loader,
+:host
+  ::ng-deep
+  .loader_class
+  td:nth-child(5)
+  ngx-skeleton-loader
+  .skeleton-loader {
   width: 100%;
   height: 15px;
 }
-:host >>> .loader_class td:nth-child(6) ngx-skeleton-loader .skeleton-loader {
+:host
+  ::ng-deep
+  .loader_class
+  td:nth-child(6)
+  ngx-skeleton-loader
+  .skeleton-loader {
   width: 100%;
   height: 32px;
 }
