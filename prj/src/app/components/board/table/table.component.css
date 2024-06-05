@@ -91,10 +91,10 @@ table tbody tr td:nth-child(1) {
 }
 table tbody tr td:nth-child(1) {
   width: 80px;
+  height: 120px;
 }
 table tbody tr td:nth-child(1).active {
   width: 70px;
-  height: auto;
 }
 table tbody tr td:nth-child(1) img {
   width: 100%;
